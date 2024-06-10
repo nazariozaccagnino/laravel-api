@@ -11,7 +11,9 @@
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Slug</th>
+        <th scope="col">Thumbnail</th>
         <th scope="col">Actions</th>
+
 
       </tr>
     </thead>

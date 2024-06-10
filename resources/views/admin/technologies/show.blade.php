@@ -6,13 +6,13 @@
     <div class="alert alert-success">{{session()->get('created')}}</div>
 @endif
 
-    <h1>{{$project->title}}</h1>
+    <h1>{{$technology->name}}</h1>
     <hr>
-    <div>{{$project->content}}</div>
-    <hr>
+    <h1>Thumb: {{$technology->thumbnail}}</h1>
+
     <div class="d-flex justify-content-end">
         <div>
-        <a href="{{route('admin.projects.index')}}" class="btn btn-primary btn-sm">Return</a>
+        <a href="{{route('admin.technologies.index')}}" class="btn btn-primary btn-sm">Return</a>
         </div>
     </div>
 </section>
