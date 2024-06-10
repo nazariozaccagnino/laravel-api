@@ -70,7 +70,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project','types','technologies'));
     }
 
     /**
@@ -85,10 +87,15 @@ class ProjectController extends Controller
         if($request->hasFile('image')){
             $name = $request->image->getClientOriginalName();
             $path = Storage::putFileAs('updatedimages', $request->image, $name);
-            dd($path);
+            //dd($path);
             $form_data['image'] = $path;
         }
         $project->update($form_data);
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        } else{
+            $project->technologies()->sync([]);
+        }
         return redirect()->route('admin.projects.show', $project->slug);
     }
 
