@@ -6,7 +6,8 @@
       @csrf
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Insert a title">
+        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+          placeholder="Insert a title">
       </div>
       @error('title')
       <div class="alert alert-danger">{{ $message }}</div>
@@ -28,17 +29,30 @@
     @enderror
       </div>
       <div class="mb-3">
-                <label for="type_id" class="form-label">Select type of project</label>
-                <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">
-                    <option value="">Select type</option>
-                  @foreach ($types as $type)
-                      <option value="{{$type->id}}" {{ $type->id == old('type_id') ? 'selected' : '' }}>{{$type->name}}</option>
-                  @endforeach
-                </select>
-                @error('type_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
+        <label for="type_id" class="form-label">Select type of project</label>
+        <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">
+          <option value="">Select type</option>
+          @foreach ($types as $type)
+        <option value="{{$type->id}}" {{ $type->id == old('type_id') ? 'selected' : '' }}>{{$type->name}}</option>
+      @endforeach
+        </select>
+        @error('type_id')
+      <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+      </div>
+      <div class="mb-3">
+                <label for="technologies" class="form-label">Technologies</label>
+                @foreach ($technologies as $technology)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                            id="technology-{{ $technology->id }}" name="technologies[]"
+                            {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="technology-{{ $technology->id }}">
+                            {{ $technology->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     @endsection

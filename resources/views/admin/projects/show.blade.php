@@ -15,6 +15,11 @@
     @else
         <p>Type of project not selected</p>
     @endif
+    @if($project->technology)
+        <p>Technology: {{$project->technology->name}}</p>
+    @else
+        <p>Technology not selected</p>
+    @endif
     <div class="d-flex justify-content-end">
         <div>
         <a href="{{route('admin.projects.index')}}" class="btn btn-primary btn-sm">Return</a>
