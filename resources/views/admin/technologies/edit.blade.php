@@ -10,7 +10,7 @@
         <label for="name" class="form-label">Name</label>
         <input type="text" class="form-control" id="name" name="name" value="{{$technology->name}}">
       </div>
-      @error('title')
+      @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
       <div class="py-2">

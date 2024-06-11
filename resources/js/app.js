@@ -45,7 +45,7 @@ deleteSubmitButtons.forEach((button) => {
 
         const buttonDelete = modal.querySelector("#btnmodaldelete");
         console.log(buttonDelete);
-        buttonDelete.addEventListener("click", () => {
+        buttonDelete?.addEventListener("click", () => {
             document.getElementById('deleteform').submit()
         });
     });
