@@ -19,7 +19,25 @@ class ProjectController extends Controller
             return response()->json([
                 'success'=> false,
                 'results'=> 'Project not found'
-            ]);
+            ], 200);
         }
+    }
+    public function show($slug)
+    {
+        $project = Project::where('slug', $slug);
+        if ($project) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Ok',
+                'results' => $project
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error'
+
+            ], 404);
+        }
+
     }
 }
