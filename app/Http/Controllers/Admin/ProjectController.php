@@ -48,11 +48,11 @@ class ProjectController extends Controller
             $path = Storage::putFileAs('updatedimages', $request->image, $name);
             $form_data['image'] = $path;
         };
-        
         $new_project = Project::create($form_data);
         if ($request->has('technologies')) {
             $new_project->technologies()->attach($request->technologies);
         }
+
         return redirect()->route('admin.projects.show', $new_project->slug)->with('created', $new_project->title . ' è stato aggiunto');
     }
     
@@ -62,6 +62,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        // dd($project);
         return view('admin.projects.show', compact('project'));
     }
 

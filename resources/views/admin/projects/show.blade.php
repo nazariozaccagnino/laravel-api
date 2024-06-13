@@ -10,13 +10,16 @@
     <hr>
     <div>{{$project->content}}</div>
     <hr>
+    <h3>Project image:</h3>
+    <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}">
+    <hr>
     @if($project->type)
         <p>Type of project: {{$project->type->name}}</p>
     @else
         <p>Type of project not selected</p>
     @endif
     @if($project->technology)
-        <p>Technology: {{$project->technology->name}}</p>
+        <p>Technology: {{$project->technology}}</p>
     @else
         <p>Technology not selected</p>
     @endif

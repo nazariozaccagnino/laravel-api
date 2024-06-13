@@ -32,6 +32,7 @@ class UpdateProjectRequest extends FormRequest
             ],
             'image' => 'nullable|image',
             'content' => 'required|max:255',
+            'technologies' => 'nullable'
 
         ];
     }
