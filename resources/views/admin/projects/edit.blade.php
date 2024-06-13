@@ -8,14 +8,15 @@
       @method('PUT')
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control" id="title" name="title" value="{{$project->title}}">
+        <input type="text" class="form-control" id="title" name="title" value="{{$project->title}}"
+        value="{{ old('title', $project->title) }}">
       </div>
       @error('title')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
       <div class="mb-3">
         <label for="content" class="form-label">Content</label>
-        <input type="text" class="form-control" id="content" name="content" value="{{$project->content}}">
+        <input type="text" class="form-control" id="content" name="content" value="{{$project->content}}">{{ old('content', $project->content) }}
       </div>
       <div class="mb-3">
         <img id="uploadPreview" width="100" src="/images/placeholder.jpg" class="p-2">

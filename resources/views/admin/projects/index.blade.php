@@ -4,7 +4,7 @@
   <h1>My projects</h1>
   @if(session()->has('deleted'))
     <div class="alert alert-danger">{{session()->get('deleted')}}</div>
-    @endif
+  @endif
   <table class="table">
     <thead>
       <tr>
@@ -18,7 +18,8 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($projects as $project)
+      @if ($projects)
+        @foreach($projects as $project)
       <tr>
       <th scope="row">{{$project->id}}</th>
       <td>{{$project->title}}</td>
@@ -26,23 +27,32 @@
       <td>{{$project->created_at}}</td>
       <td>{{$project->updated_at}}</td>
       <td>
-        <a href="{{route('admin.projects.show', $project->slug)}}"><button type="button" class="btn btn-primary btn-sm">Show</button></a>
-        <a href="{{route('admin.projects.edit', $project->slug)}}"><button type="button" class="btn btn-success btn-sm">Edit</button></a>
-        <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline-block" id="deleteform">
+
+        <a href="{{route('admin.projects.show', $project->slug)}}"><button type="button"
+        class="btn btn-primary btn-sm">Show</button></a>
+        <a href="{{route('admin.projects.edit', $project->slug)}}"><button type="button"
+        class="btn btn-success btn-sm">Edit</button></a>
+        <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline-block"
+        id="deleteform">
         @csrf
         @method('DELETE')
-        <button type="submit" class="delete-button btn btn-danger btn-sm" data-item-title="{{ $project->title }}" data-item-id = "{{ $project->id }}">Delete
+        <button type="submit" class="delete-button btn btn-danger btn-sm" data-item-title="{{ $project->title }}"
+        data-item-id="{{ $project->id }}">Delete
         </button>
         </form>
       </td>
       </tr>
     @endforeach
-    </tbody>
-  </table>
+      </tbody>
+      </table>
+    @endif
       <div class="d-flex justify-content-center">
-      <a href="{{route('admin.projects.create', $project->slug)}}"><button type="button" class="btn btn-warning">Add new project</button></a>
+      <a href="{{route('admin.projects.create')}}"><button type="button" class="btn btn-warning">Add new
+        project</button></a>
       </div>
-    </div>
+      
+    
+  </div>
 </section>
 
 @include('partials.modal-delete')
