@@ -3,7 +3,7 @@
 <section>
   <div class="container my-2">
     <h1>Edit project: {{$project->title}}</h1>
-    <form action="{{route('admin.projects.update', $project->slug)}}" method="POST">
+    <form action="{{route('admin.projects.update', $project->slug)}}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div class="mb-3">
